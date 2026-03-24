@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LiquiSwap Settings - Liquid Glass</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#008080", // Teal
+                        "secondary-orange": "#FF6600",
+                        "secondary-yellow": "#FFCC00",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0A0F0F", // Deep Abyss
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 128, 128, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .glass-card-hover:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(0, 128, 128, 0.4);
+        }
+        .glow-border-teal { border-color: rgba(0, 128, 128, 0.3); }
+        .glow-border-orange { border-color: rgba(255, 102, 0, 0.3); }
+        .glow-border-yellow { border-color: rgba(255, 204, 0, 0.3); }
+        
+        body {
+            background: radial-gradient(circle at 50% 0%, #0d1a1a 0%, #0A0F0F 100%);
+        }
+    </style>
+</head>
+<body class="font-display text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-screen w-full flex-col bg-background-dark overflow-x-hidden">
+<!-- Top Nav Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 px-6 py-4 sticky top-0 z-50 glass-card">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 flex items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<h2 class="text-slate-100 text-xl font-bold leading-tight tracking-tight">LiquiSwap</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Dashboard</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Swap</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Bundles</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Library</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-primary hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-primary hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-primary/40" data-alt="User profile avatar photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBnS_rD-hxsbna-t_19_U9Vfq4zt4PuRrvId5pI3Iztx7-RxJJWrf5dPD6Esuusisls9VIIZlLhfjRk8GUemVUwpi7YbIBgYj0JI8qWUaRKUdKL_qNuq6dh8jczWNtL8BBxiAXA1Kh7gHDHVpyXPpTownFXja9nlrn7pJETRtWftMTYdewacKx0sXZSIE2y871iabZvgMPElo-NKwqb6urtT3e3rfkZTMmVjuQ06lIF21h4l5G5bbNuiZ_D64IdpTP9B5hZcFx98H8");'></div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-10 px-4 md:px-10">
+<div class="max-w-[800px] w-full flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl font-bold text-slate-100">Settings</h1>
+<p class="text-slate-400">Manage your premium fintech experience and account security.</p>
+</div>
+<!-- Account Section -->
+<section class="flex flex-col gap-4">
+<h3 class="text-sm font-semibold uppercase tracking-widest text-primary/80 px-1">Account</h3>
+<div class="flex flex-col gap-3">
+<div class="glass-card glass-card-hover rounded-xl p-4 flex items-center justify-between cursor-pointer group transition-all">
+<div class="flex items-center gap-4">
+<div class="bg-primary/20 text-primary size-12 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h4 class="font-medium text-slate-100">Personal Info</h4>
+<p class="text-sm text-slate-400">Alex J. Rivers • alex.r@liqui.swap</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<div class="glass-card glass-card-hover rounded-xl p-4 flex items-center justify-between cursor-pointer group transition-all">
+<div class="flex items-center gap-4">
+<div class="bg-secondary-orange/20 text-secondary-orange size-12 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<h4 class="font-medium text-slate-100">Linked Wallets</h4>
+<p class="text-sm text-slate-400">3 active wallets (Teal, Orange, Yellow)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Preferences Section -->
+<section class="flex flex-col gap-4">
+<h3 class="text-sm font-semibold uppercase tracking-widest text-primary/80 px-1">Preferences</h3>
+<div class="glass-card rounded-xl divide-y divide-white/5">
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<span class="font-medium">Notifications</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary-yellow">dark_mode</span>
+<span class="font-medium">Dark Mode</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400">language</span>
+<span class="font-medium">Language</span>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded bg-primary text-white text-xs font-bold">EN</button>
+<button class="px-3 py-1 rounded bg-white/5 text-slate-400 text-xs font-bold hover:bg-white/10">FR</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Security Section -->
+<section class="flex flex-col gap-4">
+<h3 class="text-sm font-semibold uppercase tracking-widest text-primary/80 px-1">Security</h3>
+<div class="glass-card rounded-xl divide-y divide-white/5">
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+<span class="font-medium">Biometric Login</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-4 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">lock_reset</span>
+<span class="font-medium">Change Password</span>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+<div class="p-4 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">verified_user</span>
+<div class="flex flex-col">
+<span class="font-medium">Two-Factor Auth (2FA)</span>
+<span class="text-xs text-secondary-orange font-medium">Strongly Recommended</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Support Section -->
+<section class="flex flex-col gap-4">
+<h3 class="text-sm font-semibold uppercase tracking-widest text-primary/80 px-1">Support</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="glass-card glass-card-hover rounded-xl p-6 flex flex-col gap-3 cursor-pointer group">
+<span class="material-symbols-outlined text-secondary-yellow text-3xl">help_center</span>
+<h4 class="font-bold text-lg">Help Center</h4>
+<p class="text-sm text-slate-400">Find answers to common questions about swaps and bundles.</p>
+</div>
+<div class="glass-card glass-card-hover rounded-xl p-6 flex flex-col gap-3 cursor-pointer group">
+<span class="material-symbols-outlined text-primary text-3xl">chat_bubble</span>
+<h4 class="font-bold text-lg">Contact Us</h4>
+<p class="text-sm text-slate-400">Get 24/7 priority assistance from our liquid experts.</p>
+</div>
+</div>
+</section>
+<!-- Log Out Section -->
+<section class="mt-4 mb-12">
+<button class="w-full glass-card border-red-500/30 hover:bg-red-500/10 hover:border-red-500/50 py-4 rounded-xl flex items-center justify-center gap-2 text-red-400 font-bold transition-all">
+<span class="material-symbols-outlined">logout</span>
+                    Log Out of LiquiSwap
+                </button>
+<div class="mt-8 text-center">
+<p class="text-slate-600 text-xs">LiquiSwap Premium v2.4.1 (Stable)</p>
+<p class="text-slate-700 text-xs mt-1">© 2024 LiquiSwap Fintech Corp. All rights reserved.</p>
+</div>
+</section>
+</div>
+</main>
+<!-- Side Navigation Placeholder for consistency -->
+<div class="fixed left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-4">
+<div class="glass-card p-3 rounded-full flex flex-col gap-6 text-slate-400">
+<a class="material-symbols-outlined hover:text-primary transition-colors" href="#">grid_view</a>
+<a class="material-symbols-outlined hover:text-primary transition-colors" href="#">swap_horiz</a>
+<a class="material-symbols-outlined hover:text-primary transition-colors" href="#">layers</a>
+<a class="material-symbols-outlined hover:text-primary transition-colors" href="#">tag</a>
+<a class="material-symbols-outlined hover:text-primary transition-colors" href="#">history</a>
+<div class="w-6 h-[1px] bg-white/10 self-center"></div>
+<a class="material-symbols-outlined text-primary" href="#">settings</a>
+</div>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LiquiSwap | OM ↔ MOMO Swap</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007f80",
+                        "accent-orange": "#f97316",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0a0f0f", // Deep Abyss Background
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(16, 24, 24, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #007f80 0%, #f97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            border: 1px solid transparent;
+            background: linear-gradient(#0a0f0f, #0a0f0f) padding-box,
+                        linear-gradient(90deg, #007f80, #f97316) border-box;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between border-b border-white/10 px-6 py-4 lg:px-20 glass sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">currency_exchange</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight">LiquiSwap</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold hover:text-primary transition-colors border-b-2 border-primary pb-1" href="#">Swap</a>
+<a class="text-sm font-medium text-slate-400 hover:text-slate-100 transition-colors" href="#">Liquidity</a>
+<a class="text-sm font-medium text-slate-400 hover:text-slate-100 transition-colors" href="#">Pools</a>
+<a class="text-sm font-medium text-slate-400 hover:text-slate-100 transition-colors" href="#">History</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-all text-xs font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-base">translate</span>
+<span>EN/FR</span>
+</button>
+<button class="bg-primary hover:bg-primary/80 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-primary/20">
+                    Connect Wallet
+                </button>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center p-6 lg:p-12">
+<div class="max-w-[1000px] w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+<!-- Left Column: Swap Info -->
+<div class="flex flex-col gap-6">
+<div class="space-y-2">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest border border-primary/20">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                            Instant Exchange
+                        </span>
+<h1 class="text-5xl font-black tracking-tight leading-tight">
+                            OM <span class="gradient-text">↔</span> MOMO <br/>Swap
+                        </h1>
+<p class="text-slate-400 text-lg max-w-md">
+                            Fast, secure, and liquid glass swaps between Orange Money and MTN MoMo.
+                        </p>
+</div>
+<!-- Fee Calculator Card -->
+<div class="glass p-6 rounded-2xl space-y-4 border border-white/5">
+<div class="flex justify-between items-center pb-2 border-b border-white/5">
+<span class="text-slate-400 text-sm">Exchange Rate</span>
+<span class="font-mono font-bold">1 OM = 1.00 MOMO</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-slate-400 text-sm">You pay</span>
+<span class="font-bold">0 XAF</span>
+</div>
+<div class="flex justify-between items-center text-primary">
+<span class="text-sm">Fee (1%)</span>
+<span class="font-bold">0 XAF</span>
+</div>
+<div class="flex justify-between items-center pt-3 border-t border-white/5">
+<span class="text-slate-100 font-bold">Receiver gets</span>
+<span class="text-2xl font-black gradient-text">0 XAF</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 text-slate-500 text-sm italic">
+<span class="material-symbols-outlined text-base">verified_user</span>
+<span>Secured by LiquidGlass Liquidity Pools</span>
+</div>
+</div>
+<!-- Right Column: Form -->
+<div class="glass p-8 rounded-3xl space-y-6 border border-white/10 shadow-2xl relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-[80px]"></div>
+<div class="absolute -bottom-24 -left-24 w-48 h-48 bg-accent-orange/10 rounded-full blur-[80px]"></div>
+<!-- Sender Dropdown -->
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">Source Account</label>
+<div class="relative group">
+<select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-slate-100 focus:ring-2 focus:ring-primary focus:border-transparent appearance-none cursor-pointer">
+<option>Orange Money (+237 69X XXX XXX)</option>
+<option>MTN MoMo (+237 67X XXX XXX)</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 group-focus-within:text-primary">expand_more</span>
+</div>
+</div>
+<!-- Recipient Field -->
+<div class="space-y-3">
+<div class="flex justify-between items-end">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">Recipient Number</label>
+<span class="text-[10px] text-primary font-bold uppercase tracking-tighter">Verify Name</span>
+</div>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">+237</span>
+<input class="w-full bg-white/5 border border-white/10 rounded-xl pl-16 pr-4 py-4 text-slate-100 placeholder:text-slate-600 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="6XX XXX XXX" type="text"/>
+</div>
+<!-- Recent Contacts Chips -->
+<div class="flex flex-wrap gap-2 py-1">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 text-xs font-medium transition-all group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">history</span>
+<span>Maman</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 text-xs font-medium transition-all group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">history</span>
+<span>Papa</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 text-xs font-medium transition-all group">
+<span class="material-symbols-outlined text-sm text-slate-400 group-hover:text-primary">history</span>
+<span>Jean</span>
+</button>
+</div>
+</div>
+<!-- Amount Field -->
+<div class="space-y-4">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest px-1">Amount to send</label>
+<div class="relative">
+<input class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-5 text-3xl font-black text-slate-100 placeholder:text-slate-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="0" type="number"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">XAF</span>
+</div>
+<!-- Quick Select -->
+<div class="grid grid-cols-5 gap-2">
+<button class="py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-primary/20 hover:border-primary/40 transition-all">5k</button>
+<button class="py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-primary/20 hover:border-primary/40 transition-all">10k</button>
+<button class="py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-primary/20 hover:border-primary/40 transition-all">25k</button>
+<button class="py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-primary/20 hover:border-primary/40 transition-all">50k</button>
+<button class="py-2 rounded-lg bg-white/5 border border-white/10 text-[10px] font-bold hover:bg-primary/20 hover:border-primary/40 transition-all">100k</button>
+</div>
+</div>
+<!-- Cashout Fee Checkbox -->
+<div class="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/5">
+<input class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary focus:ring-primary focus:ring-offset-background-dark" id="cashout" type="checkbox"/>
+<label class="text-sm font-medium text-slate-300 cursor-pointer select-none" for="cashout">
+                            I pay the cashout fee (include withdrawal charges)
+                        </label>
+</div>
+<!-- Review Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-5 rounded-2xl text-lg font-black tracking-tight shadow-2xl shadow-primary/20 transition-all transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3">
+                        Review Swap
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="text-[10px] text-center text-slate-500 uppercase tracking-widest">
+                        Estimated time: &lt; 2 minutes
+                    </p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="px-6 lg:px-20 py-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 glass mt-12">
+<p class="text-slate-500 text-xs">© 2024 LiquiSwap Protocol. Fast Liquid Swaps.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-primary text-xs font-medium transition-colors" href="#">Documentation</a>
+<a class="text-slate-500 hover:text-primary text-xs font-medium transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-primary text-xs font-medium transition-colors" href="#">Support</a>
+</div>
+</footer>
+</div>
+</body></html>

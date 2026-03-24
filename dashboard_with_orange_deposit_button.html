@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LiquiSwap Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#008080", // Updated to Teal (#008080)
+                        "accent": "#FF6600",
+                        "warning": "#FFCC00",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0A0F0F", // Deep Abyss
+                        "surface": "#121A1A",
+                        "glass-border": "rgba(0, 128, 128, 0.3)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(10, 15, 15, 0.4);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 128, 128, 0.4);
+            box-shadow: 0 0 20px rgba(0, 128, 128, 0.15), inset 0 0 15px rgba(255, 255, 255, 0.05);
+        }
+        .liquid-gradient {
+            background: linear-gradient(135deg, #008080 0%, #0a0f0f 50%, #FF6600 100%);
+            background-size: 200% 200%;
+        }
+        .holographic-accent {
+            background: linear-gradient(135deg, rgba(0, 128, 128, 1) 0%, rgba(0, 255, 255, 0.5) 100%);
+        }
+        .ticker-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 40s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .magnetic-hover {
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
+        }
+        .magnetic-hover:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 12px 24px -10px rgba(0, 128, 128, 0.4);
+            border-color: rgba(0, 128, 128, 0.6);
+        }
+        .haptic-click:active {
+            transform: scale(0.94);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    
+        .liquid-card-interactive:hover {
+            background-position: right center;
+        }
+        .liquid-card-interactive {
+            background-size: 200% auto;
+            transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .breakdown-item {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .breakdown-item:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 15px rgba(0, 128, 128, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .details-trigger {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.4s ease;
+        }
+        .liquid-card-interactive:hover .details-trigger {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .eye-toggle .visibility-off {
+            display: none;
+        }
+        .eye-toggle.is-hidden .visibility-on {
+            display: none;
+        }
+        .eye-toggle.is-hidden .visibility-off {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-md mx-auto min-h-screen flex flex-col pb-24 relative overflow-x-hidden">
+<!-- Header (Consistent with Transaction History) -->
+<header class="sticky top-0 z-50 p-4 flex items-center justify-between liquid-glass border-b border-primary/20">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-11 rounded-xl holographic-accent p-0.5">
+<div class="w-full h-full rounded-[10px] bg-background-dark overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbcdYRtYsM7yLqZ5H1QB5zujRWWqJq3gbD8jLi0LUz5j3QWUG0t46NB4VO5zJAMMmHOFm_yNcnSYl_GZ_25UeC_OXnO8pi_yZbkPtfocwJ7scWV37g8fqInbB0enFXNZJq7bVZ85JcbZdQESFmbKjI_jWf3ZZthI5Vbbp3tOVcZeCz8A0aB_oZ4GStWcfA5HPc1rhTt0jFOgQxlZE6dREvt1GWRZ0Z-vhzawa3tkIe0gASClQMxm-FeLouob8CX9boAWS2u0Ig9wo"/>
+</div>
+</div>
+<span class="absolute -bottom-1 -right-1 size-3 bg-green-500 border-2 border-background-dark rounded-full"></span>
+</div>
+<div>
+<h1 class="text-xs text-slate-400 font-medium">Bonjour, Jean!</h1>
+<p class="text-xs text-primary font-extrabold uppercase tracking-wider">Premium Account</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="h-9 px-3 rounded-xl liquid-glass flex items-center justify-center text-[10px] font-bold border border-primary/20 haptic-click">
+                    EN/FR
+                </button>
+<div class="relative">
+<button class="size-9 rounded-xl liquid-glass flex items-center justify-center text-slate-300 border border-primary/20 haptic-click">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<span class="absolute top-1 right-1 size-2 bg-accent rounded-full animate-pulse"></span>
+</div>
+</div>
+</header>
+<main class="flex-1 px-4 py-6 space-y-8">
+<!-- Unified Balance Card (Liquid Glass) -->
+<section class="liquid-gradient rounded-3xl p-7 text-white shadow-2xl relative overflow-hidden group liquid-card-interactive">
+<!-- Glowing accent layer -->
+<div class="absolute -top-24 -right-24 size-48 bg-primary/40 blur-[80px] rounded-full"></div>
+<div class="absolute -bottom-24 -left-24 size-48 bg-accent/30 blur-[80px] rounded-full"></div>
+<div class="relative z-10">
+<div class="flex justify-between mb-2 items-center">
+<span class="text-white/70 text-sm font-semibold tracking-wide">Unified Balance</span>
+<button class="mr-2 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-accent/20 backdrop-blur-md border border-accent/40 text-white hover:bg-accent/30 transition-all haptic-click shadow-[0_0_15px_rgba(255,102,0,0.4)]">
+<span class="material-symbols-outlined text-[16px] font-bold text-white">add</span>
+<span class="text-[10px] font-black uppercase tracking-wider">Deposit</span>
+</button><button class="text-white/80 haptic-click p-1.5 bg-white/10 hover:bg-white/20 rounded-lg transition-all eye-toggle">
+<span class="material-symbols-outlined text-[20px] visibility-on">visibility</span>
+<span class="material-symbols-outlined text-[20px] visibility-off">visibility_off</span>
+</button>
+</div>
+<div class="mb-8">
+<h2 class="text-4xl font-black tracking-tight drop-shadow-lg">FCFA 1,250,000</h2><div class="details-trigger flex items-center gap-1 text-[10px] font-bold text-white/60 mt-1 cursor-pointer hover:text-white">
+<span>VIEW FULL STATEMENT</span>
+<span class="material-symbols-outlined text-xs">arrow_forward_ios</span>
+</div>
+<div class="flex items-center gap-2 mt-2">
+<span class="px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-bold flex items-center gap-1 border border-white/10">
+<span class="material-symbols-outlined text-[10px] text-green-400 font-bold">trending_up</span> 
+                                +2.4% this month
+                            </span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-3">
+<div class="liquid-glass rounded-2xl p-3 flex flex-col items-center gap-1.5 text-center border-white/10 bg-white/5 breakdown-item cursor-pointer">
+<span class="material-symbols-outlined text-primary text-xl">cell_tower</span>
+<span class="text-[9px] opacity-70 uppercase font-black tracking-widest">MTN</span>
+<span class="text-xs font-bold">450k</span>
+</div>
+<div class="liquid-glass rounded-2xl p-3 flex flex-col items-center gap-1.5 text-center border-white/10 bg-white/5 breakdown-item cursor-pointer">
+<span class="material-symbols-outlined text-accent text-xl">circle</span>
+<span class="text-[9px] opacity-70 uppercase font-black tracking-widest">Orange</span>
+<span class="text-xs font-bold">300k</span>
+</div>
+<div class="liquid-glass rounded-2xl p-3 flex flex-col items-center gap-1.5 text-center border-white/10 bg-white/5 breakdown-item cursor-pointer">
+<span class="material-symbols-outlined text-blue-400 text-xl">account_balance</span>
+<span class="text-[9px] opacity-70 uppercase font-black tracking-widest">Bank</span>
+<span class="text-xs font-bold">500k</span>
+</div>
+<div class="liquid-glass rounded-2xl p-3 flex flex-col items-center gap-1.5 text-center border-white/10 bg-white/5 breakdown-item cursor-pointer">
+<span class="material-symbols-outlined text-warning text-xl">payments</span>
+<span class="text-[9px] opacity-70 uppercase font-black tracking-widest">Cash</span>
+<span class="text-xs font-bold">0</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Action Grid -->
+<section class="grid grid-cols-3 gap-4">
+<button class="magnetic-hover haptic-click flex flex-col items-center justify-center p-5 rounded-2xl bg-surface border border-primary/10 gap-3 group">
+<div class="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl font-bold">swap_horiz</span>
+</div>
+<span class="text-[10px] font-black text-center text-slate-300 uppercase tracking-tighter">OM ↔ MOMO</span>
+</button>
+<button class="magnetic-hover haptic-click flex flex-col items-center justify-center p-5 rounded-2xl bg-surface border border-primary/10 gap-3 group">
+<div class="size-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl font-bold">phone_android</span>
+</div>
+<span class="text-[10px] font-black text-center text-slate-300 uppercase tracking-tighter">Airtime</span>
+</button>
+<button class="magnetic-hover haptic-click flex flex-col items-center justify-center p-5 rounded-2xl bg-surface border border-primary/10 gap-3 group">
+<div class="size-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl font-bold">package_2</span>
+</div>
+<span class="text-[10px] font-black text-center text-slate-300 uppercase tracking-tighter">Bundles</span>
+</button>
+<button class="magnetic-hover haptic-click flex flex-col items-center justify-center p-5 rounded-2xl bg-surface border border-primary/10 gap-3 group">
+<div class="size-12 rounded-2xl bg-warning/10 flex items-center justify-center text-warning group-hover:bg-warning group-hover:text-black transition-all duration-300">
+<span class="material-symbols-outlined text-2xl font-bold">local_fire_department</span>
+</div>
+<span class="text-[10px] font-black text-center text-slate-300 uppercase tracking-tighter">Good Deals</span>
+</button>
+<button class="magnetic-hover haptic-click flex flex-col items-center justify-center p-5 rounded-2xl bg-surface border border-primary/10 gap-3 group">
+<div class="size-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl font-bold">dialpad</span>
+</div>
+<span class="text-[10px] font-black text-center text-slate-300 uppercase tracking-tighter">USSD Codes</span>
+</button>
+<button class="magnetic-hover haptic-click flex flex-col items-center justify-center p-5 rounded-2xl bg-surface border border-primary/10 gap-3 group">
+<div class="size-12 rounded-2xl bg-slate-500/10 flex items-center justify-center text-slate-400 group-hover:bg-slate-400 group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-2xl font-bold">support_agent</span>
+</div>
+<span class="text-[10px] font-black text-center text-slate-300 uppercase tracking-tighter">Support</span>
+</button>
+</section>
+<!-- Good Deals Section -->
+<section>
+<div class="flex justify-between items-center mb-5 px-1">
+<h3 class="font-black text-xs uppercase tracking-[0.2em] text-slate-500">Curated Deals</h3>
+<button class="text-xs text-primary font-bold hover:underline">See all</button>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar -mx-4 px-4">
+<div class="min-w-[180px] bg-surface rounded-2xl p-4 border border-primary/10 flex flex-col relative overflow-hidden group hover:border-accent/40 transition-colors">
+<span class="absolute top-0 right-0 bg-accent text-[8px] font-black px-3 py-1.5 rounded-bl-xl shadow-lg">🔥 HOT</span>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-base">cell_tower</span>
+<span class="text-[10px] font-black text-slate-500 tracking-tighter">MTN HIGH VOLUME</span>
+</div>
+<p class="text-base font-extrabold mb-1">20GB / Month</p>
+<p class="text-accent text-xl font-black">5,000 FCFA</p>
+<div class="mt-4 pt-3 border-t border-white/5">
+<button class="w-full py-2 bg-primary/10 text-primary text-[10px] font-black rounded-lg hover:bg-primary hover:text-white transition-all">ACTIVATE</button>
+</div>
+</div>
+<div class="min-w-[180px] bg-surface rounded-2xl p-4 border border-primary/10 flex flex-col relative overflow-hidden group hover:border-primary/40 transition-colors">
+<span class="absolute top-0 right-0 bg-primary text-[8px] font-black px-3 py-1.5 rounded-bl-xl shadow-lg">⭐ BEST</span>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-accent text-base">circle</span>
+<span class="text-[10px] font-black text-slate-500 tracking-tighter">ORANGE MAX</span>
+</div>
+<p class="text-base font-extrabold mb-1">Social Packs</p>
+<p class="text-accent text-xl font-black">2,500 FCFA</p>
+<div class="mt-4 pt-3 border-t border-white/5">
+<button class="w-full py-2 bg-primary/10 text-primary text-[10px] font-black rounded-lg hover:bg-primary hover:text-white transition-all">ACTIVATE</button>
+</div>
+</div>
+<div class="min-w-[180px] bg-surface rounded-2xl p-4 border border-primary/10 flex flex-col relative overflow-hidden group hover:border-warning/40 transition-colors">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-base">cell_tower</span>
+<span class="text-[10px] font-black text-slate-500 tracking-tighter">MTN COMBO</span>
+</div>
+<p class="text-base font-extrabold mb-1">5GB + 100min</p>
+<p class="text-accent text-xl font-black">3,000 FCFA</p>
+<div class="mt-4 pt-3 border-t border-white/5">
+<button class="w-full py-2 bg-primary/10 text-primary text-[10px] font-black rounded-lg hover:bg-primary hover:text-white transition-all">ACTIVATE</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Transactions Section -->
+<section class="pb-8">
+<div class="flex justify-between items-center mb-5 px-1">
+<h3 class="font-black text-xs uppercase tracking-[0.2em] text-slate-500">Live Feed</h3>
+<button class="text-xs text-primary font-bold hover:underline">History</button>
+</div>
+<div class="space-y-4">
+<div class="liquid-glass rounded-2xl p-4 flex items-center gap-4 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="size-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+<span class="material-symbols-outlined">swap_horiz</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">OM to MOMO</p>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-tight">Today, 14:20</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-black text-accent">+15,000</p>
+<div class="flex items-center justify-end gap-1 text-[8px] text-green-500 uppercase font-black">
+<span>Success</span>
+<span class="material-symbols-outlined text-[12px] font-bold">check_circle</span>
+</div>
+</div>
+</div>
+<div class="liquid-glass rounded-2xl p-4 flex items-center gap-4 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="size-11 rounded-xl bg-accent/10 flex items-center justify-center text-accent border border-accent/20">
+<span class="material-symbols-outlined">phone_android</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">MTN Airtime</p>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-tight">Yesterday, 09:15</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-black text-slate-100">-2,000</p>
+<div class="flex items-center justify-end gap-1 text-[8px] text-green-500 uppercase font-black">
+<span>Success</span>
+<span class="material-symbols-outlined text-[12px] font-bold">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Live Market Ticker & Bottom Nav -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 liquid-glass border-t border-primary/20">
+<div class="ticker-wrap h-9 bg-primary/10 flex items-center border-b border-white/5">
+<div class="ticker-content flex gap-12 px-6 text-[9px] font-black tracking-[0.15em] text-primary uppercase">
+<span>OM ↔ MOMO: 1.5% Fee</span>
+<span class="text-white/40">•</span>
+<span>XAF/USD: 608.45</span>
+<span class="text-white/40">•</span>
+<span class="text-warning">BTC/XAF: 38,450,200</span>
+<span class="text-white/40">•</span>
+<span>MTN Cashout: 2%</span>
+<span class="text-white/40">•</span>
+<span>OM ↔ MOMO: 1.5% Fee</span>
+<span class="text-white/40">•</span>
+<span>XAF/USD: 608.45</span>
+<span class="text-white/40">•</span>
+<span class="text-warning">BTC/XAF: 38,450,200</span>
+</div>
+</div>
+<nav class="flex items-center justify-around h-16 max-w-md mx-auto px-2">
+<button class="flex flex-col items-center gap-1 text-primary scale-110">
+<span class="material-symbols-outlined font-fill text-2xl">grid_view</span>
+<span class="text-[9px] font-black uppercase tracking-tighter">Dash</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl">swap_calls</span>
+<span class="text-[9px] font-black uppercase tracking-tighter">Swap</span>
+</button>
+<div class="relative -mt-12 haptic-click">
+<div class="absolute inset-0 bg-primary/40 blur-xl rounded-full scale-150"></div>
+<button class="relative size-14 rounded-2xl holographic-accent flex items-center justify-center text-white shadow-2xl border-4 border-background-dark">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl">history</span>
+<span class="text-[9px] font-black uppercase tracking-tighter">History</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[9px] font-black uppercase tracking-tighter">Profile</span>
+</button>
+</nav>
+</footer>
+</div>
+</body></html>

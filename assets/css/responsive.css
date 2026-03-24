@@ -1,0 +1,375 @@
+/**
+ * Responsive Stylesheet
+ * Mobile-first responsive design for LiquiSwap
+ */
+
+/* ============================================
+   MOBILE FIRST BASE STYLES (320px+)
+   ============================================ */
+:root {
+    --font-base: clamp(0.875rem, 4vw, 1rem);
+    --font-h1: clamp(1.5rem, 5vw, 2rem);
+    --font-h2: clamp(1.25rem, 4vw, 1.5rem);
+    --font-h3: clamp(1rem, 3vw, 1.25rem);
+    --space: clamp(0.75rem, 2vw, 1.5rem);
+    --container-padding: clamp(0.75rem, 3vw, 1.5rem);
+}
+
+html {
+    font-size: var(--font-base);
+}
+
+/* Touch targets - minimum 44px */
+button, .btn, .nav-item, .clickable {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* ============================================
+   SMALL MOBILE (320px - 375px)
+   ============================================ */
+@media (max-width: 375px) {
+    .card-balance {
+        padding: 1rem;
+    }
+    
+    .card-balance .balance-amount {
+        font-size: 1.5rem;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .quick-action-btn {
+        padding: 0.5rem;
+    }
+    
+    .quick-action-btn .icon-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .quick-action-btn span {
+        font-size: 0.625rem;
+    }
+    
+    .bundle-card {
+        min-width: 140px;
+    }
+}
+
+/* ============================================
+   MOBILE (376px - 480px)
+   ============================================ */
+@media (min-width: 376px) and (max-width: 480px) {
+    .quick-actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .bundle-card {
+        min-width: 160px;
+    }
+}
+
+/* ============================================
+   LARGE MOBILE / SMALL TABLET (481px - 768px)
+   ============================================ */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container-fluid {
+        max-width: 720px;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    
+    .quick-action-btn {
+        padding: 1rem;
+    }
+    
+    .quick-action-btn .icon-wrapper {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .swap-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: start;
+    }
+}
+
+/* ============================================
+   TABLET (769px - 1024px)
+   ============================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container-fluid {
+        max-width: 960px;
+    }
+    
+    .bottom-nav {
+        display: none;
+    }
+    
+    .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        width: 240px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: var(--glass-bg);
+        backdrop-filter: var(--glass-blur);
+        border-right: 1px solid var(--glass-border);
+        padding: 1.5rem 1rem;
+        z-index: 100;
+    }
+    
+    .main-content-area {
+        margin-left: 240px;
+        padding-bottom: 0;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    
+    .bundles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dashboard-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .swap-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* ============================================
+   DESKTOP (1025px - 1440px)
+   ============================================ */
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .container-fluid {
+        max-width: 1200px;
+    }
+    
+    .bottom-nav {
+        display: none;
+    }
+    
+    .sidebar-nav {
+        display: flex;
+        width: 260px;
+    }
+    
+    .main-content-area {
+        margin-left: 260px;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+    
+    .bundles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .dashboard-layout {
+        grid-template-columns: 2fr 1fr;
+    }
+    
+    .transaction-list {
+        max-height: 600px;
+        overflow-y: auto;
+    }
+}
+
+/* ============================================
+   LARGE DESKTOP (1441px+)
+   ============================================ */
+@media (min-width: 1441px) {
+    .container-fluid {
+        max-width: 1400px;
+    }
+    
+    .bottom-nav {
+        display: none;
+    }
+    
+    .sidebar-nav {
+        display: flex;
+        width: 280px;
+    }
+    
+    .main-content-area {
+        margin-left: 280px;
+    }
+    
+    .bundles-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .swap-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+/* ============================================
+   HORIZONTAL ORIENTATION
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+    .bottom-nav {
+        display: none;
+    }
+    
+    .splash-content {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+    
+    .auth-container {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+}
+
+/* ============================================
+   SAFE AREA INSETS (NOTCH DEVICES)
+   ============================================ */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .header-fixed {
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    .bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom);
+        height: calc(var(--nav-height) + env(safe-area-inset-bottom));
+    }
+    
+    .page-content {
+        padding-bottom: calc(var(--nav-height) + env(safe-area-inset-bottom) + 1rem);
+    }
+}
+
+/* ============================================
+   HIGH RESOLUTION DISPLAYS
+   ============================================ */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .glass {
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+    }
+}
+
+/* ============================================
+   REDUCED MOTION PREFERENCE
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .animate-float,
+    .animate-float-slow,
+    .animate-liquid-morph,
+    .animate-pulse,
+    .liquid-spinner {
+        animation: none !important;
+    }
+}
+
+/* ============================================
+   DARK MODE PREFERENCE (System)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    .bottom-nav,
+    .sidebar-nav,
+    .btn-add,
+    .toast-container,
+    .loading-overlay {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .glass,
+    .glass-card,
+    .card-balance {
+        background: white !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+    }
+}
+
+/* ============================================
+   UTILITY RESPONSIVE CLASSES
+   ============================================ */
+.d-mobile-only {
+    display: block;
+}
+
+.d-desktop-only {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .d-mobile-only {
+        display: none !important;
+    }
+    
+    .d-desktop-only {
+        display: block !important;
+    }
+    
+    .d-desktop-flex {
+        display: flex !important;
+    }
+}
+
+/* Hide on specific sizes */
+@media (max-width: 480px) {
+    .hide-mobile { display: none !important; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .hide-tablet { display: none !important; }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop { display: none !important; }
+}

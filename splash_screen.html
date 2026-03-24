@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007f80",
+                        "accent-orange": "#f97316",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0a0f0f",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-gradient-text {
+            background: linear-gradient(45deg, #007f80, #f97316, #007f80);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .refraction-overlay {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 127, 128, 0.05) 0%, rgba(10, 15, 15, 0) 70%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased overflow-hidden">
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden">
+<!-- Subtle Liquid Light Refractions -->
+<div class="absolute inset-0 z-0">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/10 blur-[120px]"></div>
+<div class="absolute bottom-[-5%] right-[-5%] w-[35%] h-[35%] rounded-full bg-accent-orange/5 blur-[100px]"></div>
+<div class="absolute inset-0 refraction-overlay"></div>
+</div>
+<!-- Main Content Container -->
+<div class="relative z-10 flex flex-col items-center justify-center px-6 text-center">
+<!-- Logo Section -->
+<div class="mb-8 flex flex-col items-center">
+<div class="relative w-32 h-32 mb-6 flex items-center justify-center">
+<!-- Symbolic Liquid Drop Logo -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-accent-orange opacity-20 blur-xl rounded-full"></div>
+<span class="material-symbols-outlined text-8xl liquid-gradient-text" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;">
+                        water_drop
+                    </span>
+</div>
+<h1 class="text-5xl md:text-6xl font-bold tracking-tighter text-slate-900 dark:text-slate-100 mb-2">
+                    Liqui<span class="liquid-gradient-text">Swap</span>
+</h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl font-light tracking-wide max-w-md">
+                    Serving Cameroon &amp; Central Africa
+                </p>
+</div>
+<!-- Experience Indicator (Modified HeaderImage components style) -->
+<div class="w-full max-w-xs flex flex-col gap-4 mt-12">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center px-1">
+<p class="text-slate-500 dark:text-primary/70 text-xs font-medium uppercase tracking-[0.2em]">Initialising</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-widest">30%</p>
+</div>
+<div class="h-[2px] w-full bg-slate-200 dark:bg-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-accent-orange rounded-full" style="width: 30%;"></div>
+</div>
+</div>
+<p class="text-slate-400 dark:text-slate-500 text-sm font-normal italic">Premium Exchange Experience</p>
+</div>
+</div>
+<!-- Footer Branding -->
+<div class="absolute bottom-10 left-0 right-0 flex justify-center items-center gap-2 opacity-60">
+<span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+<p class="text-slate-500 dark:text-slate-400 text-[10px] font-medium uppercase tracking-widest">Secure Central African Liquidity</p>
+</div>
+<!-- Background Asset for Depth -->
+<div class="absolute bottom-0 w-full h-64 opacity-20 pointer-events-none">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover" data-alt="Abstract dark digital waves and liquid patterns" style='background-image: linear-gradient(to top, #0a0f0f 0%, transparent 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCDp9OSwcSe-YWXXXSuyncmkfX9hfMowL6pzA9B7jo3Dm4h0PIz4sH7WsKT65E9t-l7gBA0yJRx8fhTKt9dpLHNR8iUG-kTVUsxJoPzp9bMM1elGFaKTHOaLXIyxeIi4embOjl6DqD40noT5vPkWf3AVCjKdOEs39DwRxekkvWIBvPcq4A2END4p6uRrrzPaD3d_MS1H0lXkJnSNVPMdYxT8Ar-b60urNcYxIo1t0UTD8bHqiKPLdQc26amWB--v-suwtmdzZh1b3w");'>
+</div>
+</div>
+</div>
+</body></html>

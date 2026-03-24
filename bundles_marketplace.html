@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LiquiSwap Bundles Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007f80",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0A0F0F",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-refraction {
+            background: radial-gradient(circle at 20% 30%, rgba(0, 127, 128, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(0, 127, 128, 0.1) 0%, transparent 40%);
+        }
+        .glass-card {
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 127, 128, 0.2);
+        }
+        .glass-card:hover {
+            border: 1px solid rgba(0, 127, 128, 0.5);
+            box-shadow: 0 0 20px rgba(0, 127, 128, 0.1);
+        }
+        .glowing-border {
+            box-shadow: 0 0 10px rgba(0, 127, 128, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-slate-100 min-h-screen liquid-refraction selection:bg-primary/30">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-primary/20 bg-background-dark/80 backdrop-blur-md px-6 md:px-12 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">water_drop</span>
+</div>
+<h2 class="text-slate-100 text-xl font-bold tracking-tight">LiquiSwap</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-center max-w-xl mx-8">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/60">search</span>
+<input class="w-full bg-primary/10 border-primary/20 rounded-xl pl-10 pr-4 py-2 text-slate-100 focus:ring-primary focus:border-primary placeholder:text-slate-500 transition-all" placeholder="Search bundles (e.g. 20GB)" type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-xl bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-xl bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+<div class="h-10 w-10 rounded-full border-2 border-primary/30 p-0.5">
+<img alt="User Profile" class="rounded-full bg-primary/10" data-alt="Avatar of the user in high resolution" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChA0_QsMVfK9AX-aGccWULQAJ3lRwMLp4bKhL6zblgOGBkOvGizVF03e3sQ3uxphQfgSyiSZh-71RNlTALF5b1PCORkUOK5GJKVstT4nsI_Ev_2PrP2Qc_bGPyRtP410D6o9A_Z_2Ysf0dzbhUHsSI5nuUJwdiCltY-Gqnood9iVl7ZX1Xl41AL1-7IKeVsyc8jZAXkGT8cCZDkYxDQMUuX5bSQiJ1aJVRpjMIlI9a20bWLYQQNTaCtpeR-aeVt42m6Q4OJ3X7XIU"/>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-6 md:px-12 py-8">
+<!-- Hero / Title Section -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-4xl font-bold text-slate-100 mb-2">Bundle Marketplace</h1>
+<p class="text-slate-400 text-lg">Instant top-ups for any network in Cameroon.</p>
+</div>
+<div class="flex gap-2">
+<div class="glass-card px-4 py-2 rounded-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">speed</span>
+<span class="text-sm font-medium">Turbo 4G+ Active</span>
+</div>
+</div>
+</div>
+<!-- Operator Filter Tabs -->
+<div class="mb-8 border-b border-primary/10 overflow-x-auto no-scrollbar">
+<div class="flex gap-8 min-w-max">
+<a class="border-b-2 border-primary pb-4 px-2 text-primary font-bold transition-all" href="#">All Operators</a>
+<a class="border-b-2 border-transparent pb-4 px-2 text-slate-400 hover:text-slate-200 font-medium transition-all" href="#">MTN</a>
+<a class="border-b-2 border-transparent pb-4 px-2 text-slate-400 hover:text-slate-200 font-medium transition-all" href="#">Orange</a>
+<a class="border-b-2 border-transparent pb-4 px-2 text-slate-400 hover:text-slate-200 font-medium transition-all" href="#">Camtel</a>
+<a class="border-b-2 border-transparent pb-4 px-2 text-slate-400 hover:text-slate-200 font-medium transition-all" href="#">Nexttel</a>
+</div>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: MTN Turbo -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between group cursor-pointer transition-all hover:-translate-y-1">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-yellow-400/20 border border-yellow-400/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-yellow-500 font-bold">drone_2</span>
+</div>
+<span class="bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest">Hot</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-100 mb-1">20GB / Month</h3>
+<p class="text-slate-400 text-sm mb-4">MTN Turbo - Unlimited high speed data with nightly bonus.</p>
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                30 Days Validity
+                            </div>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                                High Priority Network
+                            </div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-primary/10">
+<div class="flex flex-col">
+<span class="text-xs text-slate-500 font-medium uppercase tracking-tighter">Price</span>
+<span class="text-xl font-bold text-slate-100">10,000 <span class="text-sm font-normal text-slate-400">FCFA</span></span>
+</div>
+<button class="bg-primary hover:bg-primary/80 text-white font-bold py-2.5 px-6 rounded-xl transition-all shadow-lg shadow-primary/20">
+                            Buy Now
+                        </button>
+</div>
+</div>
+<!-- Card 2: Orange Power -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between group cursor-pointer transition-all hover:-translate-y-1">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-500 font-bold">cell_tower</span>
+</div>
+<span class="bg-slate-700 text-slate-200 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest">Good Deal</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-100 mb-1">50GB / 3 Months</h3>
+<p class="text-slate-400 text-sm mb-4">Orange Home Premium - Best for remote workers and streaming.</p>
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                90 Days Validity
+                            </div>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">hd</span>
+                                Supports 4K Streaming
+                            </div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-primary/10">
+<div class="flex flex-col">
+<span class="text-xs text-slate-500 font-medium uppercase tracking-tighter">Price</span>
+<span class="text-xl font-bold text-slate-100">25,000 <span class="text-sm font-normal text-slate-400">FCFA</span></span>
+</div>
+<button class="bg-primary hover:bg-primary/80 text-white font-bold py-2.5 px-6 rounded-xl transition-all">
+                            Buy Now
+                        </button>
+</div>
+</div>
+<!-- Card 3: Camtel Blue -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between group cursor-pointer transition-all hover:-translate-y-1">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-500 font-bold">language</span>
+</div>
+<span class="bg-primary text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest">Hot</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-100 mb-1">Unlimited / Day</h3>
+<p class="text-slate-400 text-sm mb-4">Blue One - Truly unlimited data with zero speed throttling.</p>
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                24 Hours Validity
+                            </div>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">public</span>
+                                National Coverage
+                            </div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-primary/10">
+<div class="flex flex-col">
+<span class="text-xs text-slate-500 font-medium uppercase tracking-tighter">Price</span>
+<span class="text-xl font-bold text-slate-100">500 <span class="text-sm font-normal text-slate-400">FCFA</span></span>
+</div>
+<button class="bg-primary hover:bg-primary/80 text-white font-bold py-2.5 px-6 rounded-xl transition-all">
+                            Buy Now
+                        </button>
+</div>
+</div>
+<!-- Card 4: Nexttel G-Special -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between group cursor-pointer transition-all hover:-translate-y-1">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-500 font-bold">network_check</span>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-slate-100 mb-1">5GB / Week</h3>
+<p class="text-slate-400 text-sm mb-4">Social Pack - Optimized for Whatsapp, Facebook &amp; Tiktok.</p>
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                7 Days Validity
+                            </div>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">thumb_up</span>
+                                Social Data Included
+                            </div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-primary/10">
+<div class="flex flex-col">
+<span class="text-xs text-slate-500 font-medium uppercase tracking-tighter">Price</span>
+<span class="text-xl font-bold text-slate-100">2,500 <span class="text-sm font-normal text-slate-400">FCFA</span></span>
+</div>
+<button class="bg-primary hover:bg-primary/80 text-white font-bold py-2.5 px-6 rounded-xl transition-all">
+                            Buy Now
+                        </button>
+</div>
+</div>
+<!-- Card 5: MTN Gaming -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between group cursor-pointer transition-all hover:-translate-y-1">
+<div>
+<div class="flex justify-between items-start mb-4">
+<div class="size-12 rounded-xl bg-yellow-400/20 border border-yellow-400/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-yellow-500 font-bold">sports_esports</span>
+</div>
+<span class="bg-slate-700 text-slate-200 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest">Good Deal</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-100 mb-1">10GB / Gaming</h3>
+<p class="text-slate-400 text-sm mb-4">Low Latency Pack - Best for PUBG, Free Fire &amp; COD Mobile.</p>
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                15 Days Validity
+                            </div>
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">rocket_launch</span>
+                                Optimized Ping
+                            </div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-primary/10">
+<div class="flex flex-col">
+<span class="text-xs text-slate-500 font-medium uppercase tracking-tighter">Price</span>
+<span class="text-xl font-bold text-slate-100">4,000 <span class="text-sm font-normal text-slate-400">FCFA</span></span>
+</div>
+<button class="bg-primary hover:bg-primary/80 text-white font-bold py-2.5 px-6 rounded-xl transition-all">
+                            Buy Now
+                        </button>
+</div>
+</div>
+<!-- Card 6: Orange Flash -->
+<div class="glass-card p-6 rounded-2xl border-dashed border-primary/30 flex items-center justify-center group cursor-pointer transition-all hover:bg-primary/5">
+<div class="text-center">
+<div class="size-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">add</span>
+</div>
+<p class="text-slate-300 font-bold">Custom Bundle</p>
+<p class="text-slate-500 text-sm">Build your own plan</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Sidebar-like Footer for Mobile Context -->
+<footer class="md:hidden sticky bottom-0 z-50 bg-background-dark/90 backdrop-blur-lg border-t border-primary/20 px-6 py-4 flex justify-around">
+<div class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold mt-1 uppercase tracking-tighter">Home</span>
+</div>
+<div class="flex flex-col items-center text-slate-500">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-[10px] font-bold mt-1 uppercase tracking-tighter">Market</span>
+</div>
+<div class="flex flex-col items-center text-slate-500">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-bold mt-1 uppercase tracking-tighter">Wallet</span>
+</div>
+<div class="flex flex-col items-center text-slate-500">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold mt-1 uppercase tracking-tighter">Settings</span>
+</div>
+</footer>
+</div>
+<!-- Liquid refractions decorative elements -->
+<div class="fixed top-[-10%] left-[-10%] size-[40vw] bg-primary/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] right-[-10%] size-[40vw] bg-primary/10 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+</body></html>

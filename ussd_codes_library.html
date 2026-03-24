@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LiquiSwap USSD Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007f80",
+                        "accent-orange": "#ff8c00",
+                        "accent-yellow": "#ffcc00",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0A0F0F",
+                        "glass-dark": "rgba(20, 30, 30, 0.6)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neo-liquid-glow {
+            box-shadow: 0 0 20px rgba(0, 127, 128, 0.2);
+        }
+        .neo-liquid-glow:hover {
+            box-shadow: 0 0 30px rgba(0, 127, 128, 0.4);
+            border-color: rgba(0, 127, 128, 0.5);
+        }
+        .holographic-text {
+            background: linear-gradient(135deg, #007f80 0%, #ff8c00 50%, #ffcc00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0F0F;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a2e2e;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #007f80;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen selection:bg-primary/30">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Animated Background Elements -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute top-1/2 -right-24 w-80 h-80 bg-accent-orange/5 rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-24 left-1/3 w-96 h-96 bg-accent-yellow/5 rounded-full blur-[120px]"></div>
+</div>
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 glass-card border-b-0 px-4 md:px-20 py-4 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-primary to-accent-orange flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-2xl">account_balance_wallet</span>
+</div>
+<h2 class="text-xl font-extrabold tracking-tight holographic-text">LiquiSwap</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-slate-400 hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-semibold text-primary" href="#">USSD Library</a>
+<a class="text-sm font-semibold text-slate-400 hover:text-primary transition-colors" href="#">Transactions</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
+<input class="bg-background-dark/50 border border-slate-800 rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all w-64" placeholder="Global Search..." type="text"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary/30 p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="User profile avatar circle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByTSvl_qmZfhDKZ3RIM-qwazVv_mHzZzqMz5TN1w_EIUE53Ffy-Lrw6DR2zKcDjYVOT3XlL_UkWqpSp4T-2Ew-oBef5wlpkyFliBo_5cjLhM2khLE4HXRrCOhbbYEJq478fHjGF3ZFSNBeIcBXQG6K9tOxCHrIn6r5IZPB1097QDlO_e5HZ0m0FvVgCoJWCZjDHoscxIW3oINb4rIddyAH8haU8uP2BM4nOl3W7aH2lctm6T4Jc7bXPN5oS97ZhoBhpuDKJVRRPto')"></div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 md:px-20 py-8">
+<!-- Hero Section -->
+<div class="mb-12">
+<div class="flex flex-col gap-2">
+<span class="text-primary font-bold tracking-widest text-xs uppercase">Central African Fintech Hub</span>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight leading-tight">
+                            USSD <span class="text-primary">Direct</span> Library
+                        </h1>
+<p class="text-slate-400 text-lg max-w-xl">
+                            Instant access to critical mobile services across the region. No internet? No problem.
+                        </p>
+</div>
+</div>
+<!-- Sticky Filter & Search Bar -->
+<div class="sticky top-[80px] z-40 space-y-4 mb-8">
+<div class="glass-card p-2 rounded-2xl flex flex-col md:flex-row gap-4 items-center shadow-2xl shadow-black/40">
+<div class="relative w-full md:w-1/3">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">manage_search</span>
+<input class="w-full bg-background-dark/80 border-none rounded-xl pl-12 pr-4 py-4 text-slate-100 placeholder:text-slate-600 focus:ring-2 focus:ring-primary/50 transition-all shadow-inner" placeholder="Find codes (e.g. Orange Money, *155#)" type="text"/>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto w-full no-scrollbar pb-2 md:pb-0">
+<button class="px-6 py-3 rounded-xl bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 whitespace-nowrap">All Services</button>
+<button class="px-6 py-3 rounded-xl bg-background-dark/50 hover:bg-background-dark text-slate-400 hover:text-slate-100 text-sm font-bold transition-all whitespace-nowrap">Balance</button>
+<button class="px-6 py-3 rounded-xl bg-background-dark/50 hover:bg-background-dark text-slate-400 hover:text-slate-100 text-sm font-bold transition-all whitespace-nowrap">Airtime</button>
+<button class="px-6 py-3 rounded-xl bg-background-dark/50 hover:bg-background-dark text-slate-400 hover:text-slate-100 text-sm font-bold transition-all whitespace-nowrap">Data Bundles</button>
+<button class="px-6 py-3 rounded-xl bg-background-dark/50 hover:bg-background-dark text-slate-400 hover:text-slate-100 text-sm font-bold transition-all whitespace-nowrap">Banking</button>
+</div>
+</div>
+</div>
+<!-- USSD Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="glass-card p-6 rounded-2xl neo-liquid-glow transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">account_balance</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider">Balance</span>
+</div>
+<h3 class="text-xl font-bold mb-1">Check Main Balance</h3>
+<p class="text-slate-500 text-sm mb-6">Orange &amp; MTN Central Africa common query</p>
+<div class="bg-background-dark/80 rounded-xl p-4 flex items-center justify-between mb-6 group-hover:bg-primary/5 transition-colors">
+<span class="text-2xl font-mono font-bold text-accent-orange">*155#</span>
+<button class="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">call</span>
+                                Dial Now
+                            </button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-6 rounded-2xl neo-liquid-glow transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-accent-orange/10 text-accent-orange">
+<span class="material-symbols-outlined text-3xl">signal_cellular_alt</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-accent-orange/20 text-accent-orange text-[10px] font-bold uppercase tracking-wider">Data</span>
+</div>
+<h3 class="text-xl font-bold mb-1">Buy Data Bundles</h3>
+<p class="text-slate-500 text-sm mb-6">Daily, Weekly and Monthly 4G plans</p>
+<div class="bg-background-dark/80 rounded-xl p-4 flex items-center justify-between mb-6 group-hover:bg-accent-orange/5 transition-colors">
+<span class="text-2xl font-mono font-bold text-accent-yellow">*141*2#</span>
+<button class="flex items-center gap-2 text-accent-orange hover:text-accent-orange/80 transition-colors">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-accent-orange hover:bg-accent-orange/90 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">call</span>
+                                Dial Now
+                            </button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-6 rounded-2xl neo-liquid-glow transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-accent-yellow/10 text-accent-yellow">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-accent-yellow/20 text-accent-yellow text-[10px] font-bold uppercase tracking-wider">Services</span>
+</div>
+<h3 class="text-xl font-bold mb-1">MoMo Transfer</h3>
+<p class="text-slate-500 text-sm mb-6">Send money to any mobile number</p>
+<div class="bg-background-dark/80 rounded-xl p-4 flex items-center justify-between mb-6 group-hover:bg-accent-yellow/5 transition-colors">
+<span class="text-2xl font-mono font-bold text-primary">*126#</span>
+<button class="flex items-center gap-2 text-accent-yellow hover:text-accent-yellow/80 transition-colors">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-accent-yellow text-background-dark font-black py-3 rounded-xl transition-all flex items-center justify-center gap-2 hover:scale-[1.02]">
+<span class="material-symbols-outlined text-xl">call</span>
+                                Dial Now
+                            </button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="glass-card p-6 rounded-2xl neo-liquid-glow transition-all group border-primary/20">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">phone_iphone</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider">Airtime</span>
+</div>
+<h3 class="text-xl font-bold mb-1">Recharge Card</h3>
+<p class="text-slate-500 text-sm mb-6">Direct scratch card top-up portal</p>
+<div class="bg-background-dark/80 rounded-xl p-4 flex items-center justify-between mb-6">
+<span class="text-2xl font-mono font-bold text-accent-orange">*135*PIN#</span>
+<button class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">call</span>
+                                Dial Now
+                            </button>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="glass-card p-6 rounded-2xl neo-liquid-glow transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-slate-800 text-slate-400">
+<span class="material-symbols-outlined text-3xl">help_center</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-slate-800 text-slate-400 text-[10px] font-bold uppercase tracking-wider">Support</span>
+</div>
+<h3 class="text-xl font-bold mb-1">Customer Service</h3>
+<p class="text-slate-500 text-sm mb-6">Speak with a local agent directly</p>
+<div class="bg-background-dark/80 rounded-xl p-4 flex items-center justify-between mb-6">
+<span class="text-2xl font-mono font-bold text-white">955</span>
+<button class="flex items-center gap-2 text-slate-400">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 border border-slate-700 hover:bg-slate-800 text-slate-100 font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-xl">call</span>
+                                Dial Now
+                            </button>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="glass-card p-6 rounded-2xl neo-liquid-glow transition-all group">
+<div class="flex justify-between items-start mb-6">
+<div class="p-3 rounded-xl bg-accent-orange/10 text-accent-orange">
+<span class="material-symbols-outlined text-3xl">wifi_tethering</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-accent-orange/20 text-accent-orange text-[10px] font-bold uppercase tracking-wider">Data</span>
+</div>
+<h3 class="text-xl font-bold mb-1">Night Data Plan</h3>
+<p class="text-slate-500 text-sm mb-6">Low-cost midnight surfing bundles</p>
+<div class="bg-background-dark/80 rounded-xl p-4 flex items-center justify-between mb-6">
+<span class="text-2xl font-mono font-bold text-accent-yellow">*150*47#</span>
+<button class="flex items-center gap-2 text-accent-orange">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-accent-orange text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">call</span>
+                                Dial Now
+                            </button>
+</div>
+</div>
+</div>
+<!-- Footer/Bottom Tip Section -->
+<div class="mt-16 p-8 rounded-3xl bg-gradient-to-r from-primary/10 via-background-dark to-accent-orange/5 border border-primary/10 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-primary">lightbulb</span>
+</div>
+<div>
+<h4 class="text-lg font-bold">Pro Tip: Offline Access</h4>
+<p class="text-slate-400">Add these codes to your phone's shortcuts for instant access during outages.</p>
+</div>
+</div>
+<button class="bg-white/5 hover:bg-white/10 px-8 py-3 rounded-xl font-bold text-sm transition-all border border-white/10">
+                        Download PDF Library
+                    </button>
+</div>
+</main>
+<!-- Bottom Navigation for Mobile -->
+<footer class="md:hidden sticky bottom-0 z-50 glass-card px-6 py-4 flex items-center justify-between border-t border-white/5 rounded-t-3xl">
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-bold">Menu</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">dialpad</span>
+<span class="text-[10px] font-bold">USSD</span>
+</button>
+<div class="relative -top-8 bg-primary p-4 rounded-full shadow-xl shadow-primary/40 text-white">
+<span class="material-symbols-outlined text-3xl">swap_horiz</span>
+</div>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-bold">History</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</footer>
+</div>
+</div>
+</body></html>

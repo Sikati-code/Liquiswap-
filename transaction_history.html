@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LiquiSwap - Transaction History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007f80",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0a0f0f", // Deep Abyss per request
+                        "glass-border": "rgba(0, 127, 128, 0.3)",
+                        "neo-glow": "rgba(0, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-morphism {
+            background: rgba(15, 35, 35, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 127, 128, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .neo-holographic-glow {
+            box-shadow: 0 0 15px rgba(0, 127, 128, 0.2), inset 0 0 10px rgba(0, 255, 255, 0.05);
+        }
+        .holographic-accent {
+            background: linear-gradient(135deg, rgba(0, 127, 128, 1) 0%, rgba(0, 255, 255, 0.5) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen selection:bg-primary/30">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 glass-morphism border-b border-primary/20 px-6 lg:px-20 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="size-10 holographic-accent rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-2xl">waves</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-primary/80">LiquiSwap</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Dashboard</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Swap</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Bundles</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">USSD Library</a>
+<a class="text-primary transition-colors text-sm font-bold relative" href="#">
+                        History
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 holographic-accent rounded-full"></span>
+</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex size-10 items-center justify-center rounded-xl glass-morphism hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-slate-100 text-[20px]">notifications</span>
+</button>
+<div class="size-10 rounded-xl p-0.5 holographic-accent">
+<div class="w-full h-full rounded-[10px] bg-background-dark flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="User avatar with a stylish tech aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANjWFCU-rdYgDB1xf7y7oh1sRVPeCgWRe7JxhMoan2CpOIUO1JUT4Q7yvvrfLmGbxlm7O2VDrFemnWy1gka_O9YPaALkogk1CEWfH7wP5ttqG9Qsf5fKwkJGO3zyVJbLa2N1mY0m-2NnFSd2XlusdK9Xo3u8JsUkMhPdmGm97EyrvIwbNisTxCPc-qzg97jdZXVZdnNx40CjF_sj2gled2jw9rfr50_BWnuUUvfBYh3LKJnJGa87vfuzB8hE6I7Ie9bhOjOOO3c3M"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto w-full px-6 lg:px-20 py-8 space-y-8">
+<!-- Header Section -->
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-extrabold tracking-tight text-white">Transaction History</h1>
+<p class="text-slate-400 max-w-lg">Monitor your liquid assets across networks with real-time holographic tracking.</p>
+</div>
+<!-- Controls Section -->
+<div class="flex flex-col md:flex-row gap-4">
+<div class="flex-1">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-12 pl-12 pr-4 glass-morphism rounded-xl border-primary/10 focus:ring-1 focus:ring-primary focus:border-primary text-slate-100 placeholder:text-slate-500 transition-all outline-none" placeholder="Search by network, type or amount..." type="text"/>
+</div>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
+<button class="flex items-center gap-2 px-4 py-2 glass-morphism rounded-xl border-primary/20 hover:border-primary/50 text-sm font-medium whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">calendar_today</span> Date Range <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary/20 text-primary border border-primary/40 rounded-xl text-sm font-medium whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">swap_horiz</span> Type: Swap <span class="material-symbols-outlined text-sm">close</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 glass-morphism rounded-xl border-primary/20 hover:border-primary/50 text-sm font-medium whitespace-nowrap">
+                        Bundle
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 glass-morphism rounded-xl border-primary/20 hover:border-primary/50 text-sm font-medium whitespace-nowrap">
+                        Airtime
+                    </button>
+</div>
+</div>
+<!-- Transaction Groups -->
+<div class="space-y-10">
+<!-- Group: Today -->
+<section>
+<h3 class="text-slate-400 text-xs font-bold uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
+                        Today <span class="h-px flex-1 bg-primary/10"></span>
+</h3>
+<div class="space-y-3">
+<!-- Transaction Row 1 -->
+<div class="group glass-morphism rounded-2xl p-4 flex items-center justify-between hover:bg-primary/5 transition-all cursor-pointer border-transparent hover:border-primary/30 neo-holographic-glow">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-orange-500/20 border border-orange-500/30 flex items-center justify-center text-orange-500">
+<span class="material-symbols-outlined">cell_tower</span>
+</div>
+<div>
+<p class="font-bold text-slate-100">Swap OM to MOMO</p>
+<p class="text-sm text-slate-400 flex items-center gap-2">
+                                        Orange Money <span class="material-symbols-outlined text-[10px] text-slate-600">arrow_forward</span> MTN MoMo
+                                    </p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden sm:block text-right">
+<p class="text-xs text-slate-500">14:24 PM</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-500/10 text-green-400 border border-green-500/20">SUCCESS</span>
+</div>
+<div class="text-right">
+<p class="font-bold text-red-400">- 25,500 XAF</p>
+<p class="text-[10px] text-slate-500">Fee: 150 XAF</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+<!-- Transaction Row 2 -->
+<div class="group glass-morphism rounded-2xl p-4 flex items-center justify-between hover:bg-primary/5 transition-all cursor-pointer border-transparent hover:border-primary/30 neo-holographic-glow">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-yellow-400/20 border border-yellow-400/30 flex items-center justify-center text-yellow-500">
+<span class="material-symbols-outlined">data_usage</span>
+</div>
+<div>
+<p class="font-bold text-slate-100">MTN Data Bundle 2GB</p>
+<p class="text-sm text-slate-400">Mobile Data • 677 xxx xxx</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden sm:block text-right">
+<p class="text-xs text-slate-500">09:12 AM</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">PENDING</span>
+</div>
+<div class="text-right">
+<p class="font-bold text-red-400">- 1,000 XAF</p>
+<p class="text-[10px] text-slate-500">Instant activation</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: Yesterday -->
+<section>
+<h3 class="text-slate-400 text-xs font-bold uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
+                        Yesterday <span class="h-px flex-1 bg-primary/10"></span>
+</h3>
+<div class="space-y-3">
+<div class="group glass-morphism rounded-2xl p-4 flex items-center justify-between hover:bg-primary/5 transition-all cursor-pointer border-transparent hover:border-primary/30 neo-holographic-glow">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-bold text-slate-100">Wallet Top-up</p>
+<p class="text-sm text-slate-400">Card Payment • **** 4421</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden sm:block text-right">
+<p class="text-xs text-slate-500">18:45 PM</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-500/10 text-green-400 border border-green-500/20">SUCCESS</span>
+</div>
+<div class="text-right">
+<p class="font-bold text-green-400">+ 150,000 XAF</p>
+<p class="text-[10px] text-slate-500">Verified payment</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Group: This Week -->
+<section>
+<h3 class="text-slate-400 text-xs font-bold uppercase tracking-[0.2em] mb-4 flex items-center gap-3">
+                        This Week <span class="h-px flex-1 bg-primary/10"></span>
+</h3>
+<div class="space-y-3">
+<div class="group glass-morphism rounded-2xl p-4 flex items-center justify-between hover:bg-primary/5 transition-all cursor-pointer border-transparent hover:border-primary/30 neo-holographic-glow opacity-80">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-red-500/20 border border-red-500/30 flex items-center justify-center text-red-500">
+<span class="material-symbols-outlined">error</span>
+</div>
+<div>
+<p class="font-bold text-slate-100">Airtime Purchase</p>
+<p class="text-sm text-slate-400">Orange • 699 xxx xxx</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden sm:block text-right">
+<p class="text-xs text-slate-500">Oct 24, 11:05 AM</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-500/10 text-red-400 border border-red-500/20">FAILED</span>
+</div>
+<div class="text-right">
+<p class="font-bold text-slate-500">500 XAF</p>
+<p class="text-[10px] text-red-400">Insuff. funds</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+<div class="group glass-morphism rounded-2xl p-4 flex items-center justify-between hover:bg-primary/5 transition-all cursor-pointer border-transparent hover:border-primary/30 neo-holographic-glow">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="font-bold text-slate-100">Cash-out to Bank</p>
+<p class="text-sm text-slate-400">UBA Cameroon • FR23..901</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="hidden sm:block text-right">
+<p class="text-xs text-slate-500">Oct 22, 16:30 PM</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-500/10 text-green-400 border border-green-500/20">SUCCESS</span>
+</div>
+<div class="text-right">
+<p class="font-bold text-red-400">- 45,000 XAF</p>
+<p class="text-[10px] text-slate-500">Reference: LS-9932</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Empty State Illustration Placeholder (Invisible if results exist) -->
+<div class="hidden flex-col items-center justify-center py-20 text-center space-y-4">
+<div class="size-24 rounded-full glass-morphism flex items-center justify-center neo-holographic-glow">
+<span class="material-symbols-outlined text-5xl text-primary/40">history_toggle_off</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-white">No transactions found</h4>
+<p class="text-slate-400">Try adjusting your filters or date range.</p>
+</div>
+<button class="px-6 py-2 holographic-accent text-white font-bold rounded-xl shadow-lg">Clear All Filters</button>
+</div>
+</main>
+<!-- Bottom Gradient Blur -->
+<div class="fixed bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background-dark to-transparent pointer-events-none z-10"></div>
+</div>
+</body></html>

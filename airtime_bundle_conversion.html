@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LiquiSwap - Airtime to Bundle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007f80",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0a0f0f",
+                        "glass-border": "rgba(0, 127, 128, 0.2)",
+                        "hologram": "rgba(0, 255, 255, 0.1)"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-morphism {
+            background: rgba(15, 35, 35, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neo-liquid-glow {
+            box-shadow: 0 0 20px rgba(0, 127, 128, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.1);
+        }
+        .holographic-gradient {
+            background: linear-gradient(135deg, rgba(0, 127, 128, 0.2) 0%, rgba(0, 255, 255, 0.05) 50%, rgba(0, 127, 128, 0.2) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-10">
+<!-- Background Decorative Elements -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="layout-container flex h-full grow flex-col items-center">
+<div class="w-full max-w-[520px] px-4">
+<!-- Header -->
+<header class="flex items-center justify-between py-6 sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full glass-morphism border border-primary/20 hover:bg-primary/20 transition-all">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-100 flex items-center gap-2">
+                                Airtime <span class="material-symbols-outlined text-primary text-sm">trending_flat</span> Bundle
+                            </h1>
+<p class="text-xs text-slate-400 font-medium">LiquiSwap Instant Conversion</p>
+</div>
+</div>
+<button class="size-10 rounded-full glass-morphism flex items-center justify-center border border-primary/10 relative">
+<span class="material-symbols-outlined text-slate-300">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full ring-2 ring-background-dark"></span>
+</button>
+</header>
+<div class="space-y-8 mt-4">
+<!-- Step 1: Select Airtime Source -->
+<section class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center size-7 rounded-full bg-primary/20 border border-primary/40 text-primary text-xs font-bold">1</span>
+<h2 class="text-lg font-semibold text-slate-100">Select Airtime Source</h2>
+</div>
+<div class="glass-morphism p-5 rounded-xl border border-primary/10 space-y-4">
+<label class="block">
+<span class="text-sm font-medium text-slate-400 block mb-2 px-1">Payer Phone Number</span>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary">phone_iphone</span>
+</div>
+<input class="w-full bg-background-dark/50 border border-primary/20 rounded-lg py-4 pl-12 pr-12 text-slate-100 placeholder:text-slate-600 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Enter 9-digit number" type="text"/>
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-primary/60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">contact_page</span>
+</button>
+</div>
+</label>
+<!-- Recent Contacts Chips -->
+<div class="space-y-2">
+<p class="text-[10px] uppercase tracking-widest font-bold text-slate-500 px-1">Recent Recipients</p>
+<div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+<button class="flex shrink-0 items-center gap-2 px-3 py-1.5 rounded-full glass-morphism border border-primary/10 hover:border-primary/40 transition-all group">
+<div class="size-6 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary">M</div>
+<span class="text-xs font-medium text-slate-300 group-hover:text-white">Mom</span>
+</button>
+<button class="flex shrink-0 items-center gap-2 px-3 py-1.5 rounded-full glass-morphism border border-primary/10 hover:border-primary/40 transition-all group">
+<div class="size-6 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary">P</div>
+<span class="text-xs font-medium text-slate-300 group-hover:text-white">Papa</span>
+</button>
+<button class="flex shrink-0 items-center gap-2 px-3 py-1.5 rounded-full glass-morphism border border-primary/10 hover:border-primary/40 transition-all group">
+<div class="size-6 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary">J</div>
+<span class="text-xs font-medium text-slate-300 group-hover:text-white">Junior</span>
+</button>
+<button class="flex shrink-0 items-center gap-2 px-3 py-1.5 rounded-full glass-morphism border border-primary/10 hover:border-primary/40 transition-all group">
+<div class="size-6 rounded-full bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary">A</div>
+<span class="text-xs font-medium text-slate-300 group-hover:text-white">Alice</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 2: Choose Bundle -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center size-7 rounded-full bg-primary/20 border border-primary/40 text-primary text-xs font-bold">2</span>
+<h2 class="text-lg font-semibold text-slate-100">Choose Bundle</h2>
+</div>
+<button class="text-primary text-xs font-bold hover:underline">View All</button>
+</div>
+<div class="relative mb-4">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-lg">search</span>
+<input class="w-full bg-background-dark/50 border border-primary/10 rounded-lg py-2.5 pl-10 pr-4 text-sm text-slate-300 placeholder:text-slate-600 focus:border-primary/40 outline-none" placeholder="Search MTN, Orange or Nexttel bundles..." type="text"/>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<!-- Bundle Card 1 -->
+<div class="glass-morphism p-4 rounded-xl border border-primary/30 holographic-gradient relative overflow-hidden group cursor-pointer hover:scale-[1.01] transition-transform">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-yellow-500 flex items-center justify-center font-black text-black text-xs">MTN</div>
+<div>
+<h3 class="font-bold text-slate-100">Monthly Maxi</h3>
+<p class="text-xs text-slate-400">30 Days Validity</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-lg font-black text-primary">2,500</span>
+<span class="text-[10px] text-primary/70 uppercase">XAF</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-4">
+<div class="px-3 py-1 rounded bg-primary/20 border border-primary/30 text-primary text-xs font-bold">12 GB Data</div>
+<div class="px-3 py-1 rounded bg-slate-800/50 border border-slate-700 text-slate-400 text-xs font-medium">+ Unlimited WhatsApp</div>
+</div>
+<div class="absolute top-0 right-0 p-1">
+<span class="material-symbols-outlined text-primary text-sm opacity-0 group-hover:opacity-100 transition-opacity">check_circle</span>
+</div>
+</div>
+<!-- Bundle Card 2 -->
+<div class="glass-morphism p-4 rounded-xl border border-primary/10 hover:border-primary/30 transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-orange-600 flex items-center justify-center font-black text-white text-xs">OG</div>
+<div>
+<h3 class="font-bold text-slate-100">Weeky Data+</h3>
+<p class="text-xs text-slate-400">7 Days Validity</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-lg font-black text-slate-100">1,000</span>
+<span class="text-[10px] text-slate-500 uppercase">XAF</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-4">
+<div class="px-3 py-1 rounded bg-primary/10 border border-primary/10 text-primary/80 text-xs font-bold">4.5 GB Data</div>
+<div class="px-3 py-1 rounded bg-slate-800/50 border border-slate-700 text-slate-400 text-xs font-medium">Anytime Use</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Step 3: Preview -->
+<section class="space-y-4">
+<div class="flex items-center gap-3">
+<span class="flex items-center justify-center size-7 rounded-full bg-primary/20 border border-primary/40 text-primary text-xs font-bold">3</span>
+<h2 class="text-lg font-semibold text-slate-100">Transaction Preview</h2>
+</div>
+<div class="glass-morphism rounded-xl border border-primary/10 overflow-hidden">
+<div class="p-5 flex items-center justify-between bg-primary/5">
+<div class="text-center flex-1">
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">From Airtime</p>
+<p class="text-xl font-black text-slate-100">2,500 <span class="text-xs font-normal text-slate-400">XAF</span></p>
+</div>
+<div class="flex flex-col items-center px-4">
+<span class="material-symbols-outlined text-primary text-2xl">swap_horiz</span>
+<div class="h-px w-8 bg-primary/20 mt-1"></div>
+</div>
+<div class="text-center flex-1">
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">To Bundle</p>
+<p class="text-xl font-black text-primary">12 GB <span class="text-xs font-normal text-primary/70">DATA</span></p>
+</div>
+</div>
+<div class="p-5 space-y-3 text-sm">
+<div class="flex justify-between items-center">
+<span class="text-slate-500">Service Fee</span>
+<span class="text-slate-200 font-medium">0 XAF</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-500">LiquiSwap Bonus</span>
+<span class="text-emerald-400 font-medium">+250 MB Extra</span>
+</div>
+<div class="pt-3 border-t border-primary/10 flex justify-between items-center">
+<span class="font-bold text-slate-300">Total Deductible</span>
+<span class="font-bold text-slate-100">2,500 XAF</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<div class="pt-4 space-y-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl neo-liquid-glow flex items-center justify-center gap-3 active:scale-95 transition-all shadow-[0_0_30px_rgba(0,127,128,0.4)]">
+<span>Convert Airtime Now</span>
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<p class="text-center text-[11px] text-slate-500 px-8">
+                            By clicking convert, you authorize LiquiSwap to debit your airtime balance for the selected bundle. No refunds for incorrect numbers.
+                        </p>
+</div>
+</div>
+<!-- Footer Nav Spacer -->
+<div class="h-20"></div>
+</div>
+</div>
+<!-- Bottom Floating Bar (App Style) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[400px] glass-morphism border border-primary/20 rounded-full px-6 py-3 flex items-center justify-between z-50 neo-liquid-glow">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] text-slate-500 group-hover:text-primary font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-primary">sync_alt</span>
+<span class="text-[10px] text-primary font-bold">Swap</span>
+</button>
+<div class="relative -top-8">
+<button class="size-14 rounded-full bg-primary flex items-center justify-center shadow-[0_0_25px_rgba(0,127,128,0.6)] ring-4 ring-background-dark active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-white text-3xl">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">account_balance_wallet</span>
+<span class="text-[10px] text-slate-500 group-hover:text-primary font-bold">Wallet</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">settings</span>
+<span class="text-[10px] text-slate-500 group-hover:text-primary font-bold">Settings</span>
+</button>
+</div>
+</div>
+</body></html>

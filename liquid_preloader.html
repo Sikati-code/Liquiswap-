@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LiquiSwap | Initializing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007f80",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2323",
+                        "accent-orange": "#f97316",
+                        "accent-gold": "#fbbf24",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .neo-liquid-shadow {
+            box-shadow: 0 0 50px -12px rgba(0, 127, 128, 0.5);
+        }
+        .abyss-gradient {
+            background: radial-gradient(circle at center, #1a3a3a 0%, #0f2323 100%);
+        }
+        .morph-blob {
+            border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+            background: linear-gradient(135deg, #007f80 0%, #f97316 50%, #fbbf24 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="relative flex h-screen w-full flex-col abyss-gradient overflow-hidden">
+<!-- Navbar -->
+<header class="flex items-center justify-between px-6 py-4 border-b border-primary/10 backdrop-blur-md z-50">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">water_drop</span>
+</div>
+<h2 class="text-slate-100 text-xl font-bold leading-tight tracking-tight">LiquiSwap</h2>
+</div>
+<button class="flex items-center justify-center rounded-full w-10 h-10 bg-primary/20 text-primary hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<!-- Main Preloader Content -->
+<main class="flex-1 flex flex-col items-center justify-center px-4 relative">
+<!-- Abstract Deep Abyss Background Elements -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-orange/5 rounded-full blur-[100px]"></div>
+</div>
+<!-- Central Morphing Container -->
+<div class="relative flex flex-col items-center">
+<!-- The Liquid Blob -->
+<div class="morph-blob w-64 h-64 md:w-80 md:h-80 flex items-center justify-center neo-liquid-shadow relative overflow-hidden">
+<!-- Inner liquid effect -->
+<div class="absolute inset-0 bg-black/20 backdrop-blur-[2px]"></div>
+<!-- Progress Percentage -->
+<div class="relative z-10 flex flex-col items-center">
+<span class="text-5xl md:text-7xl font-black text-white tracking-tighter">65<span class="text-2xl md:text-3xl opacity-80">%</span></span>
+<span class="text-xs uppercase tracking-[0.2em] font-bold text-white/70 mt-2">Flowing</span>
+</div>
+<!-- Particle/Wave details (Visual only) -->
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-white/10 to-transparent"></div>
+</div>
+<!-- Loading Info -->
+<div class="mt-12 text-center max-w-sm space-y-6">
+<div>
+<h1 class="text-2xl md:text-3xl font-bold text-slate-100 mb-2">Initializing Protocol</h1>
+<p class="text-slate-400 text-sm md:text-base leading-relaxed">Connecting to the deep abyss of decentralized liquidity pools...</p>
+</div>
+<!-- Progressive Status Bar -->
+<div class="space-y-3">
+<div class="flex justify-between items-end text-xs font-semibold uppercase tracking-wider text-primary">
+<span>Liquidity Depth Check</span>
+<span class="text-accent-orange">Optimal</span>
+</div>
+<div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary via-accent-orange to-accent-gold" style="width: 65%;"></div>
+</div>
+<p class="text-[10px] text-slate-500 italic">Syncing teal to orange transition states...</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Stats -->
+<footer class="p-8 flex justify-between items-center z-50">
+<div class="flex gap-8">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-slate-500">Gas Price</span>
+<span class="text-sm font-medium text-slate-300">12 Gwei</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-slate-500">Latency</span>
+<span class="text-sm font-medium text-slate-300">24ms</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs font-medium text-slate-400">Mainnet Connected</span>
+</div>
+</footer>
+<!-- Background Image with data-alt for visual texture -->
+<div class="hidden">
+<img alt="texture" data-alt="Dark teal organic liquid texture background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANHlD7-3Gc0-dQxB_h7EVrXAWwMUp6e3DHXKExkyE84vnmNwvAdG35ZnNf6OPtD03ToQewy1DVSo5Pc4iYQwhKDPgDiWEh2urtWNT3kBtyvR4AObU76EFYQTSPtcFOW2zVNpjyouKKwTa1slDrV_ma8dHU6RPTLpe17Iv_jThrC-VdC-492zWlNQhJl_QXxZx1FwIvg1llirpMs4-xijtQWusE2YU3kPZnzzepFHiGfyMeu065bZkV8olYyjh0sgwj-ZC5ScBhShk"/>
+</div>
+</div>
+</body></html>
